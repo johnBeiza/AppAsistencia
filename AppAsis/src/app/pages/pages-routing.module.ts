@@ -1,29 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { ContactoComponent } from './contacto/contacto.component';
-import { StoreComponent } from './store/store.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { authGuard } from '../guard/auth.guard';
 import { redirectIfAuthGuard } from '../guard/redirect-if-auth.guard';
-import { ProfeComponent } from './profe/profe.component';
-import { AlumnoComponent } from './alumno/alumno.component';
-import { QrComponent } from './qr/qr.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'home', component: HomeComponent},
-  { path: 'contacto', component: ContactoComponent},
-  { path: 'store', component: StoreComponent, canActivate: [authGuard]},
-  { path: 'login', component: LoginComponent, canActivate: [redirectIfAuthGuard]},
-  { path: 'logout', component: LogoutComponent, canActivate: [authGuard]},
-  { path: 'not-found', component: NotFoundComponent},
-  { path: 'profe', component: ProfeComponent},
-  { path: 'alumno', component: AlumnoComponent},
-  { path: 'qr', component: QrComponent},
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirigir la ruta raíz a login
+  { path: 'login', component: LoginComponent },         // Ruta para el componente login
+  { path: 'home', component: HomeComponent, canActivate: [authGuard] }, // Ruta protegida de home
+  { path: 'logout', component: LogoutComponent, canActivate: [authGuard] },
 ];
+
 
 @NgModule({
   imports: [

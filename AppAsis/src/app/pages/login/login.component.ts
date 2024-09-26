@@ -28,8 +28,8 @@ export class LoginComponent  implements OnInit {
 
   login(usuario: string, clave: string): void {
 
-    this.authService.buscarBD(usuario, clave); // Intentar hacer login
-    //this.authService.buscarBD2(usuario, clave); // Intentar hacer login con base en datos fijos
+    //this.authService.buscarBD(usuario, clave); // Intentar hacer login
+    this.authService.buscarBD2(usuario, clave); // Intentar hacer login con base en datos fijos
 
     // Suscribirse al observable para verificar el estado de autenticación
     this.authService.isAuthenticated$.subscribe(isAuthenticated => {
