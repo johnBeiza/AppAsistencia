@@ -1,0 +1,71 @@
+// Variables
+$primary-color: #007bff;
+$success-color: #28a745;
+$background-color: #f0f0f0;
+$box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin button-style {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+// Componentes
+.body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    @include flex-center;
+    height: 100vh;
+    background-color: $background-color;
+}
+
+.container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: $box-shadow;
+    width: 80%;
+    max-width: 400px;
+}
+
+.heading {
+    text-align: center;
+}
+
+.course-list {
+    list-style-type: none;
+    padding: 0;
+
+    &__item {
+        margin-bottom: 10px;
+    }
+
+    &__link {
+        @include button-style;
+        background-color: $primary-color;
+        text-decoration: none;
+        text-align: center;
+    }
+}
+
+.btn-asistencia {
+    @include button-style;
+    background-color: $success-color;
+}
+
+#asistencia-page {
+    display: none;
+}
