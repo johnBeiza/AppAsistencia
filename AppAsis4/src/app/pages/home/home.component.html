@@ -1,0 +1,42 @@
+<div class="container">
+  <h1>Bienvenido</h1>
+  
+  <div *ngIf="isAuthenticated; else notAuthenticated">
+    <p>Has iniciado sesión como: {{ userType }}</p>
+    
+    <button (click)="verAsignaturas()">
+      Ver Asignaturas
+    </button>
+    
+    <div *ngIf="showAsignaturas">
+      <ul>
+        <li *ngFor="let asignatura of asignaturas">
+          <button (click)="handleAsignaturaClick(asignatura)">
+            {{ asignatura }}
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="userType === 'Estudiante' && showQRAlumnos" class="qr-modal">
+      <h2>Mantencion</h2>
+      <p>Escanea el código QR para quedar presente:</p>
+      <button (click)="cerrarQR()">Cerrar</button>
+    </div>
+
+    <div *ngIf="userType === 'Profesor' && showQR" class="qr-modal">
+      <h2>Qr Generado</h2>
+      <p>Escanea este código QR para quedar presente:</p>
+      <qrcode 
+        [qrdata]="'Datos para el QR de asistencia'"
+        [width]="256"
+        [errorCorrectionLevel]="'M'">
+      </qrcode>
+      <button (click)="cerrarQR()">Cerrar</button>
+    </div>
+  </div>
+  
+  <ng-template #notAuthenticated>
+    <p>Por favor, inicia sesión para ver el contenido.</p>
+  </ng-template>
+</div>
